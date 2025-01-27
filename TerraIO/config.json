@@ -1,0 +1,28 @@
+{
+  "http_server": {
+    "ip_listen": "0.0.0.0",
+    "port_listen": "3000"
+  },
+  "schedule": {
+    "tera-velke-led-on_rano": {
+      "schedule": "* * * * *",
+      "device": "tera-velke-led",
+      "action": "on"
+    },
+    "tera-velke-led-off_vecer": {
+      "schedule": "* * * * *",
+      "device": "tera-velke-led",
+      "action": "off"
+    }
+  },
+  "devices": {
+    "tera-velke-led": {
+      "ip": "192.168.0.100",
+      "device_type": "sonoff"
+    },
+    "tera-velke-uvb": {
+      "ip": "192.168.0.101",
+      "device_type": "sonoff"
+    }
+  }
+}

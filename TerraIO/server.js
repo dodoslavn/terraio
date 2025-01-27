@@ -1,16 +1,11 @@
-// Import the http module
-const http = require('http');
+const http_server = require('http');
 
-// Create an HTTP server
-const server = http.createServer((req, res) => {
-    // Set the response header
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+const functions = require('./functions.js');
+const Cron = require('./cron.js');
 
-    // Send a response message
-    res.end('Hello, World!\n');
-});
+global.config = functions.loadConfig();
+global.crontab = new Cron(config.schedule);
 
-// Set the server to listen on port 3000
-server.listen(3000, '0.0.0.0', () => {
-    console.log('Server is running at http://localhost:3000/');
-});
+const my_server = http_server.createServer(functions.processRequest);
+
+my_server.listen(config.http_server.port_listen, config.http_server.iplisten, functions.serverStarted());
