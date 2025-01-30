@@ -1,4 +1,6 @@
 const cron = require('node-cron');
+const { Devices, DevSonoff } = require("./devices.js");
+
 class Cron
     {
     #list = [];
@@ -10,7 +12,6 @@ class Cron
             console.log("INFO: Loading schedule for " + item + " ( " + schedule[item].schedule + ", " + schedule[item].action + ", " + schedule[item].device + " )");
             if (!this.add(item, schedule[item].schedule, schedule[item].action, schedule[item].device)) console.log("WARNING: Couldnt add schedule from config - " + item);
             }
-        //console.log("INFO: Auto loaded from config file " + Object.keys(schedule).length + " schedules"); 
         }
 
 
@@ -29,7 +30,26 @@ class Cron
             }
         else
             {
-            this.#list[name] = cron.schedule(schedule, () => { console.log(name + ' - ' + device) });
+            if (action != "on" && action != "off")
+                {
+                console.log("ERROR: Action type invalid - " + name);
+                return;
+                }
+            const dev_type = config.devices[device].device_type;
+            switch (config.devices[device].device_type)
+                {
+                case 'sonoff':
+                    const DevSonoff_instance = DevSonoff;
+                    this.#list[name] = cron.schedule(schedule, () => { console.log('INFO - SCHEDULER: ' + name); DevSonoff_instance.Switch(device, action); });
+                    //this.#list[name] = cron.schedule(schedule, () => { console.log('aaaaa') });
+                    break;
+                case 'esp32':
+                    this.#list[name] = cron.schedule(schedule, () => { console.log(name + ' - ' + device) });
+                    break;
+                default:
+                    console.log("ERROR: Device type invalid - " + name);
+                    break;
+                }
             return true;
             }
         }
