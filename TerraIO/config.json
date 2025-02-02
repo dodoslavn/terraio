@@ -6,7 +6,7 @@
   "schedule": {
     "tera-velke-uvb-on_test": {
       "schedule": "* * * * *",
-      "device": "tera-velke-uvb",
+      "device": "tera-velke-mlha",
       "action": "on"
     },
     "tera-velke-led-on_rano": {
@@ -37,6 +37,10 @@
     },
     "tera-velke-uvb": {
       "ip": "192.168.0.175",
+      "device_type": "sonoff"
+    },
+    "tera-velke-mlha": {
+      "ip": "192.168.0.176",
       "device_type": "sonoff"
     }
   }
