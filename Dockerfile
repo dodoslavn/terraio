@@ -6,6 +6,6 @@ WORKDIR ${FOLDER}
 COPY TerraIO/*.js ${FOLDER}
 RUN apt-get clean
 RUN apt-get update
-RUN apt-get install -y nodejs 
+RUN apt-get install -y nodejs curl
 EXPOSE ${PORT}
 ENTRYPOINT ["node" , "server.js" ]
