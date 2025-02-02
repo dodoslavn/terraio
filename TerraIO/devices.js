@@ -67,20 +67,12 @@ class DevSonoff extends Devices
 
     static #send_request(url)
         {
-        rc = "";
-        exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
-            if (error)
-                {
-                console.error(`ERROR: ${error.message}`);
-                return stdout;
-                }
-            if (stderr)
-                {
-                console.error(`ERROR: ${stderr}`);
-                return stdout;
-                }
-            console.log("-"+stdout+"-");
+        let rc = "";
+        exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "' + url + '"', (error, stdout, stderr) =>
+            {
             rc = stdout;
+            if (error)  console.error(`ERROR: ${error.message}`); 
+            if (stderr) console.error(`ERROR: ${stderr}`); 
             });
         return rc;
         }
