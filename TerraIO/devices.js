@@ -67,7 +67,8 @@ class DevSonoff extends Devices
 
     static #send_request(url)
         {
-        return exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
+        rc = "";
+        exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
             if (error)
                 {
                 console.error(`ERROR: ${error.message}`);
@@ -79,8 +80,9 @@ class DevSonoff extends Devices
                 return stdout;
                 }
             console.log("-"+stdout+"-");
-            return stdout;
+            rc = stdout;
             });
+        return rc;
         }
     }
 
