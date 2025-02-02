@@ -32,12 +32,17 @@ class DevSonoff extends Devices
     static TurnOn(device)
         {
         const url = "http://" + config.devices[device].ip + "/rpc/Switch.Set?id=0&on=true";
-        //const auth = 'admin:Neviem123.';
-        //const authHeader = 'Basic ' + Buffer.from(auth).toString('base64');
-        
-        this.#send_request(url);
-        console.log("INFO: Turning on");
-        return true;
+        console.log("INFO: Turning on "+device);
+        const pom = this.#send_request(url);
+        if (pom == "200") {
+            console.log("INFO: Turning on device " + device + " was successful");
+            return true
+        }
+        else
+            {
+            console.log("ERROR: Turning on device " + device + " failed");
+            return false;
+            }
         }
 
     static TurnOff(device)
@@ -59,8 +64,7 @@ class DevSonoff extends Devices
                 console.error(`Stderr: ${stderr}`);
                 return;
                 }
-            if (stdout == "200")
-                { console.log("INFO: Request successful"); }
+            return stdout;
             });
         }
 
