@@ -5,7 +5,7 @@
   },
   "schedule": {
     "tera-velke-uvb-on_test": {
-      "schedule": "* * * * *",
+      "schedule": "* * * 1 *",
       "device": "tera-velke-mlha",
       "action": "on"
     },
