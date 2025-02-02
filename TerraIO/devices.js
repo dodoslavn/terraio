@@ -1,3 +1,4 @@
+const { exec } = require('child_process');
 class Devices
     {
     static TurnOn(device)
@@ -31,10 +32,10 @@ class DevSonoff extends Devices
     static TurnOn(device)
         {
         const url = "http://" + config.devices[device].ip + "/rpc/Switch.Set?id=0&on=true";
-        const auth = 'admin:Neviem123.';
-        const authHeader = 'Basic ' + Buffer.from(auth).toString('base64');
+        //const auth = 'admin:Neviem123.';
+        //const authHeader = 'Basic ' + Buffer.from(auth).toString('base64');
         
-        this.#http_request(url, authHeader);
+        this.#send_request(url);
         console.log("INFO: Turning on");
         return true;
         }
@@ -43,6 +44,21 @@ class DevSonoff extends Devices
         {
         console.log("INFO: Turning off");
         return true;
+        }
+
+    static async #send_request(url)
+        {
+        exec('curl -vvv --ssl --tlsv1.2 --digest -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
+            if (error) {
+                console.error(`Error: ${error.message}`);
+                return;
+            }
+            if (stderr) {
+                console.error(`Stderr: ${stderr}`);
+                return;
+            }
+            console.log(`Stdout:\n${stdout}`);
+            });
         }
 
     static async #http_request(url, authHeader)
