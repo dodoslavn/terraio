@@ -48,7 +48,7 @@ class DevSonoff extends Devices
 
     static async #send_request(url)
         {
-        exec('curl -vvv --ssl --tlsv1.2 --digest -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
+        exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error: ${error.message}`);
                 return;
