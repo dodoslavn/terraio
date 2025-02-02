@@ -34,10 +34,11 @@ class DevSonoff extends Devices
         const url = "http://" + config.devices[device].ip + "/rpc/Switch.Set?id=0&on=true";
         console.log("INFO: Turning on "+device);
         const return_code = this.#send_request(url);
-        if (return_code == "200") {
+        if (return_code == "200")
+            {
             console.log("INFO: Turning on device " + device + " was successful");
             return true
-        }
+            }
         else
             {
             console.log("ERROR: Turning on device " + device + " failed");
@@ -48,8 +49,20 @@ class DevSonoff extends Devices
 
     static TurnOff(device)
         {
-        console.log("INFO: Turning off");
-        return true;
+        const url = "http://" + config.devices[device].ip + "/rpc/Switch.Set?id=0&on=false";
+        console.log("INFO: Turning off " + device);
+        const return_code = this.#send_request(url);
+        if (return_code == "200")
+            {
+            console.log("INFO: Turning off device " + device + " was successful");
+            return true
+            }
+        else
+            {
+            console.log("ERROR: Turning off device " + device + " failed");
+            console.log(return_code);
+            return false;
+            }
         }
 
     static async #send_request(url)
@@ -57,14 +70,15 @@ class DevSonoff extends Devices
         exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
             if (error)
                 {
-                console.error(`Error: ${error.message}`);
+                console.error(`ERROR: ${error.message}`);
                 return stdout;
                 }
             if (stderr)
                 {
-                console.error(`Stderr: ${stderr}`);
+                console.error(`ERROR: ${stderr}`);
                 return stdout;
                 }
+            console.error("-" + stdout+"-");
             return stdout;
             });
         }
