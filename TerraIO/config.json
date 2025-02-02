@@ -4,13 +4,28 @@
     "port_listen": "3000"
   },
   "schedule": {
-    "tera-velke-led-on_rano": {
+    "tera-velke-uvb-on_test": {
       "schedule": "* * * * *",
       "device": "tera-velke-uvb",
       "action": "on"
     },
+    "tera-velke-led-on_rano": {
+      "schedule": "0 9 * * *",
+      "device": "tera-velke-led",
+      "action": "on"
+    },
     "tera-velke-led-off_vecer": {
-      "schedule": "1 1 1 1 1",
+      "schedule": "0 18 * * *",
+      "device": "tera-velke-led",
+      "action": "off"
+    },
+    "tera-velke-uvb-on_rano": {
+      "schedule": "0 11 * * *",
+      "device": "tera-velke-uvb",
+      "action": "on"
+    },
+    "tera-velke-uvb-off_vecer": {
+      "schedule": "0 15 * * *",
       "device": "tera-velke-uvb",
       "action": "off"
     }

@@ -65,9 +65,9 @@ class DevSonoff extends Devices
             }
         }
 
-    static async #send_request(url)
+    static #send_request(url)
         {
-        exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
+        return exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "'+url+'"', (error, stdout, stderr) => {
             if (error)
                 {
                 console.error(`ERROR: ${error.message}`);
@@ -78,28 +78,9 @@ class DevSonoff extends Devices
                 console.error(`ERROR: ${stderr}`);
                 return stdout;
                 }
-            console.error("-" + stdout+"-");
+            console.log("-"+stdout+"-");
             return stdout;
             });
-        }
-
-    static async #http_request(url, authHeader)
-        {
-        try
-            {
-            const response = await fetch(url,
-                {
-                method: 'GET',
-                headers: 
-                    {
-                    Authorization: authHeader,
-                    },
-                });
-            const text = await response.text();
-            console.log('Response:', text);
-            }
-        catch (err)
-            { console.error('Request failed:', err); }
         }
     }
 
