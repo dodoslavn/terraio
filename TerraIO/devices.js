@@ -33,14 +33,15 @@ class DevSonoff extends Devices
         {
         const url = "http://" + config.devices[device].ip + "/rpc/Switch.Set?id=0&on=true";
         console.log("INFO: Turning on "+device);
-        const pom = this.#send_request(url);
-        if (pom == "200") {
+        const return_code = this.#send_request(url);
+        if (return_code == "200") {
             console.log("INFO: Turning on device " + device + " was successful");
             return true
         }
         else
             {
             console.log("ERROR: Turning on device " + device + " failed");
+            console.log(return_code);
             return false;
             }
         }
@@ -57,12 +58,12 @@ class DevSonoff extends Devices
             if (error)
                 {
                 console.error(`Error: ${error.message}`);
-                return;
+                return stdout;
                 }
             if (stderr)
                 {
                 console.error(`Stderr: ${stderr}`);
-                return;
+                return stdout;
                 }
             return stdout;
             });
