@@ -1,4 +1,5 @@
-const { exec } = require('child_process');
+const { execSync } = require('child_process');
+
 class Devices
     {
     static TurnOn(device)
@@ -10,6 +11,18 @@ class Devices
     static TurnOff(device)
         {
         console.log("ERROR: Turning off - undefined device" + device);
+        return false;
+        }
+
+    static getPowerUsage(device)
+        {
+        console.log("ERROR: Power usage - undefined device" + device);
+        return false;
+        }
+
+    static getTemp(device)
+        {
+        console.log("ERROR: Temperautre - undefined device" + device);
         return false;
         }
 
@@ -41,8 +54,7 @@ class DevSonoff extends Devices
             }
         else
             {
-            console.log("ERROR: Turning on device " + device + " failed");
-            console.log(return_code);
+            console.log("ERROR: Turning on device " + device + " failed (RC: " + return_code + ")");
             return false;
             }
         }
@@ -59,22 +71,16 @@ class DevSonoff extends Devices
             }
         else
             {
-            console.log("ERROR: Turning off device " + device + " failed");
-            console.log(return_code);
+            console.log("ERROR: Turning off device " + device + " failed (RC: " + return_code);
             return false;
             }
         }
 
     static #send_request(url)
         {
-        let rc = "";
-        exec('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "' + url + '"', (error, stdout, stderr) =>
-            {
-            rc = stdout;
-            if (error)  console.error(`ERROR: ${error.message}`); 
-            if (stderr) console.error(`ERROR: ${stderr}`); 
-            });
-        return rc;
+        try { return execSync('curl -o /dev/null -s -w "%{http_code}" --digest --ssl --tlsv1.2 -u "admin:Neviem123." "' + url + '"').toString(); }
+        catch (error) { console.error('ERROR: ' + error.message); }
+        return -1;
         }
     }
 
