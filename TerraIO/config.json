@@ -1,6 +1,6 @@
 {
   "http_server": {
-    "ip_listen": "0.0.0.0",
+    "ip_listen": "127.0.0.2",
     "port_listen": "3000"
   },
   "schedule": {
