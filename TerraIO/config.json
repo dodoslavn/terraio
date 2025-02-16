@@ -32,7 +32,7 @@
   },
   "devices": {
     "tera-velke-led": {
-      "ip": "192.168.0.100",
+      "ip": "192.168.0.110",
       "device_type": "sonoff"
     },
     "tera-velke-uvb": {
