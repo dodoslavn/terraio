@@ -28,19 +28,33 @@
       "schedule": "0 14 * * *",
       "device": "tera-velke-uvb",
       "action": "off"
+    },
+    "tera-male-uvb-on_rano": {
+      "schedule": "0 9 * * *",
+      "device": "tera-male-uvb",
+      "action": "on"
+    },
+    "tera-male-uvb-off_vecer": {
+      "schedule": "0 17 * * *",
+      "device": "tera-male-uvb",
+      "action": "off"
     }
   },
   "devices": {
-    "tera-velke-led": {
-      "ip": "192.168.0.110",
+    "tera-velke-uvb": {
+      "ip": "192.168.0.39",
       "device_type": "sonoff"
     },
-    "tera-velke-uvb": {
-      "ip": "192.168.0.175",
+    "tera-velke-led": {
+      "ip": "192.168.0.38",
       "device_type": "sonoff"
     },
     "tera-velke-mlha": {
-      "ip": "192.168.0.176",
+      "ip": "192.168.0.37",
+      "device_type": "sonoff"
+    },
+    "tera-male-uvb": {
+      "ip": "192.168.0.36",
       "device_type": "sonoff"
     }
   }
