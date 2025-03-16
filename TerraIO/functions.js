@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 const Cron = require('./cron.js');
-const website = require('./website/test.js');
+const website = require('./website/main.js');
 function serverStarted() { console.log(`INFO: HTTP server started`); }
 
 function loadConfig()
@@ -23,13 +23,10 @@ async function processRequest(req, res)
     {
     console.log('INFO: Client request received - ' + req.url);
 
-    //crontab.add('prvy', '* * * * *', "on", 'esp');
-    //console.log( crontab.list() );
-    
     switch (req.url)
         {
         case '/':
-            website.list(req, res);
+            website.root(req, res);
             break;
         case '/default.css':
             website.css(req, res);

@@ -24,32 +24,32 @@
       "device": "tera-velke-uvb",
       "action": "off"
     },
-    "tera-velke-mlha-on_rano": {
+    "tera-velke-mlha-rano_on": {
       "schedule": "0 8 * * *",
       "device": "tera-velke-mlha",
       "action": "on"
     },
-    "tera-velke-mlha-off_rano": {
+    "tera-velke-mlha-rano_off": {
       "schedule": "15 8 * * *",
       "device": "tera-velke-mlha",
       "action": "off"
     },
-    "tera-velke-mlha-on_vecer": {
+    "tera-velke-mlha-vecer_on": {
       "schedule": "0 20 * * *",
       "device": "tera-velke-mlha",
       "action": "on"
     },
-    "tera-velke-mlha-off_vecer": {
+    "tera-velke-mlha-vecer_off": {
       "schedule": "30 20 * * *",
       "device": "tera-velke-mlha",
       "action": "off"
     },
-    "tera-velke-mlha-on_vnoci": {
+    "tera-velke-mlha-vnoci_on": {
       "schedule": "0 1 * * *",
       "device": "tera-velke-mlha",
       "action": "on"
     },
-    "tera-velke-mlha-off_vnoci": {
+    "tera-velke-mlha-vnoci_off": {
       "schedule": "15 1 * * *",
       "device": "tera-velke-mlha",
       "action": "off"

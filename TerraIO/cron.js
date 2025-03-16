@@ -16,7 +16,8 @@ class Cron
 
 
     list()
-        { return JSON.stringify( Object.keys(this.#list) ); }
+        { return Object.keys(this.#list); }
+        //{ return JSON.stringify( Object.keys(this.#list) ); }
 
     show(job)
         { return this.#list[job]; }
