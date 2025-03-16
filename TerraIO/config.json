@@ -4,11 +4,6 @@
     "port_listen": "3000"
   },
   "schedule": {
-    "tera-velke-uvb-on_test": {
-      "schedule": "* * * 1 *",
-      "device": "tera-velke-mlha",
-      "action": "on"
-    },
     "tera-velke-led-on_rano": {
       "schedule": "0 9 * * *",
       "device": "tera-velke-led",
