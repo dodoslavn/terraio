@@ -18,6 +18,7 @@ body table tr td
     {
     padding-left: 1rem;
     padding-right: 1rem;
+    height: 1rem;
     }
 
 body table tr td.on
