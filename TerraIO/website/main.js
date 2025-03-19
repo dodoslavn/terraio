@@ -68,6 +68,7 @@ function root(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     //global.crontab.del("tera-velke-led-on_rano");
     res.write(basics.header);
+    res.write('<h2>List of schedules</h2>');
     res.write(root_list());
     res.write( basics.footer );
 }

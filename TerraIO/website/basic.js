@@ -86,22 +86,34 @@ body
     margin: 0;
     }
 
-body table
+body div#content
+    {
+    display: flex;
+    flex-direction: column;
+    width: 50rem;
+    }
+
+body div#content h2
+    {
+    margin-left: 2rem;
+    }
+
+body div#content table
     {
     margin-left: auto;
     margin-right: auto;
     text-align: center;
     }
-body table tr td 
+body div#content table tr td 
     {
     padding-left: 1rem;
     padding-right: 1rem;
     height: 1rem;
     }
 
-body table tr td.on
+body div#content table tr td.on
     { color: green; }
-body table tr td.off
+body div#content table tr td.off
     { color: red; }
 
 th
@@ -125,24 +137,33 @@ body div#panel
 
 body div#panel ul 
     {
+    padding: 0;
     }
 
 body div#panel ul li
     {
     list-style: none;
     padding: 0.5rem;
+    paddin-left: 0;
     }
 
 body div#panel ul li a
     {
     text-decoration: none;
     color: white;
+    padding: 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
     }
 
 body div#panel ul li a:hover
     {
     text-decoration: none;
     color: #006fdd;
+    background-color: red;
+    background-color: #006fdd;
+    color: #fff;
+    border-radius: 5px;
     }
 `;
 
@@ -162,9 +183,11 @@ const header = `
         <li><a href="/">About</a></li>
     </ul>
 </div>
+<div id="content">
 `;
 
 const footer = `
+</div>
 </body>
 </html>
 `;
