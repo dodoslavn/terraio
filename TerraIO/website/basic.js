@@ -83,6 +83,7 @@ body
     background-color: #121212;
     font-family: Open Sans;
     font-size: 1rem;
+    margin: 0;
     }
 
 body table
