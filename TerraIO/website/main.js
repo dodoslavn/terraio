@@ -15,7 +15,7 @@ function check_online(ip)
         {
         //const result = execSync("ping -n 1 "+ip);
         const result = execSync("/usr/bin/ping -c 1 " + ip);
-        console.log(result.toString());
+        //console.log(result.toString());
         return 'Yes';
         }
     catch (error)
