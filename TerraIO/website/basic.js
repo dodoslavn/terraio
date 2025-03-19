@@ -173,6 +173,7 @@ const header = `
 <head>
     <title>TerrarIO</title>
     <link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
 </head>
 <body>
 <div id="panel">

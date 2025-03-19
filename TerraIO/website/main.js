@@ -73,10 +73,19 @@ function root(req, res) {
     res.write( basics.footer );
 }
 
+function favicon(req, res)
+    {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'image/x-icon');
+    faviconBase64 = basics.favicon;
+    res.end(Buffer.from(faviconBase64, 'base64'));
+    }
+
 module.exports =
 {
     root,
     css,
     devices,
-    unknown
+    unknown,
+    favicon
 };
