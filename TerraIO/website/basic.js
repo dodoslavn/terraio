@@ -34,7 +34,38 @@ th
     border-radius: 5px;
     }
 
+body div#panel
+    {
+    width: 10rem;
+    background-color: #1b1b1b;
+    float: left;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    padding-left: 1rem;
+    }
 
+body div#panel ul 
+    {
+    }
+
+body div#panel ul li
+    {
+    list-style: none;
+    padding: 0.5rem;
+    }
+
+body div#panel ul li a
+    {
+    text-decoration: none;
+    color: white;
+    }
+
+body div#panel ul li a:hover
+    {
+    text-decoration: none;
+    color: #006fdd;
+    }
 `;
 
 const header = `
@@ -45,6 +76,14 @@ const header = `
     <link rel="stylesheet" type="text/css" href="/default.css" media="screen" >
 </head>
 <body>
+<div id="panel">
+    <h2>TerrarIO</h2>
+    <ul>
+        <li><a href="/">Schedule</a></li>
+        <li><a href="/devices">Devices</a></li>
+        <li><a href="/">About</a></li>
+    </ul>
+</div>
 `;
 
 const footer = `

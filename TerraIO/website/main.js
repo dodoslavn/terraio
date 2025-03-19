@@ -1,3 +1,5 @@
+const { execSync } = require("child_process");
+
 const basics = require('./basic.js');
 function css(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/css' });
@@ -6,6 +8,41 @@ function css(req, res) {
 function unknown(req, res) {
     res.writeHead(404, { 'Content-Type': 'text/plain' });
 }
+
+function check_online(ip)
+    {
+    try
+        {
+        //const result = execSync("ping -n 1 "+ip);
+        const result = execSync("/usr/bin/ping -c 1 " + ip);
+        console.log(result.toString());
+        return 'Yes';
+        }
+    catch (error)
+        {
+        console.error("Error:", error.message);
+        }
+    return 'No';
+    }
+
+function devices_list() {
+    let pom = "<table><tr><th>Device name</th><th>IP address</th><th>Type</th><th>Is online</th></tr>";
+    Object.entries(global.config.devices).forEach(([name, data]) => {
+        pom = pom + "<tr><td>" + name + "</td><td>" + data.ip + "</td><td>" + data.device_type + "</td><td>" + check_online(data.ip) + "</td><td>";
+
+    });
+    pom = pom + "</table>";
+    return pom;
+}
+
+function devices(req, res)
+    {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(basics.header);
+    res.write('<h2>List of configured devices</h2>');
+    res.write(devices_list());
+    res.write(basics.footer);
+    }
 
 function time_cront_simplify(schedule)
     {
@@ -31,7 +68,6 @@ function root(req, res) {
     res.writeHead(200, { 'Content-Type': 'text/html' });
     //global.crontab.del("tera-velke-led-on_rano");
     res.write(basics.header);
-    res.write("<h2>TerrarIO</h2>");
     res.write(root_list());
     res.write( basics.footer );
 }
@@ -40,5 +76,6 @@ module.exports =
 {
     root,
     css,
+    devices,
     unknown
 };

@@ -31,6 +31,9 @@ async function processRequest(req, res)
         case '/default.css':
             website.css(req, res);
             break;
+        case '/devices':
+            website.devices(req, res);
+            break;
         default:
             website.unknown(req, res);
         }
