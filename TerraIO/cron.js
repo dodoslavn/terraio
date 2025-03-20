@@ -1,6 +1,15 @@
 const cron = require('node-cron');
 const { Devices, DevSonoff } = require("./devices.js");
 
+function timestamp()
+    {
+    const now = new Date();
+    let sec;
+    if (now.getSeconds() < 10) sec = "0" + now.getSeconds();
+    else sec = now.getSeconds();
+    return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "_" + now.getHours() + ":" + now.getMinutes() + ":" + sec + " > ";
+    }
+
 class Cron
     {
     #list = [];
@@ -9,7 +18,7 @@ class Cron
         {
         for (let item in schedule)
             {
-            console.log("INFO: Loading schedule for " + item + " ( " + schedule[item].schedule + ", " + schedule[item].action + ", " + schedule[item].device + " )");
+            console.log(timestamp() + "INFO: Loading schedule for " + item + " ( " + schedule[item].schedule + ", " + schedule[item].action + ", " + schedule[item].device + " )");
             if (!this.add(item, schedule[item].schedule, schedule[item].action, schedule[item].device)) console.log("WARNING: Couldnt add schedule from config - " + item);
             }
         }

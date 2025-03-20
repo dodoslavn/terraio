@@ -2,7 +2,7 @@ const fs = require('fs');
 
 const Cron = require('./cron.js');
 const website = require('./website/main.js');
-function serverStarted() { console.log(`INFO: HTTP server started`); }
+function serverStarted() { console.log(timestamp() + `INFO: HTTP server started`); }
 
 function loadConfig()
     {
@@ -18,6 +18,21 @@ function loadConfig()
     return json;
     }
 
+function timestamp()
+    {
+    const now = new Date();
+    let sec;
+    if (now.getSeconds() < 10) sec = "0" + now.getSeconds();
+    else sec = now.getSeconds();
+    return now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + "_" + now.getHours() + ":" + now.getMinutes() + ":" + sec + " > ";
+    }
+
+function website_showFavicon(req, res) {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'image/x-icon');
+    faviconBase64 = website.faviconBase64;
+    res.end(Buffer.from(faviconBase64, 'base64'));
+}
 
 async function processRequest(req, res)
     {
@@ -33,6 +48,9 @@ async function processRequest(req, res)
             break;
         case '/devices':
             website.devices(req, res);
+            break;
+        case '/favicon.ico':
+            website.favicon(req, res);
             break;
         default:
             website.unknown(req, res);
