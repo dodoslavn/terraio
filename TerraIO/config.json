@@ -55,12 +55,12 @@
       "action": "off"
     },
     "tera-male-uvb-on_rano": {
-      "schedule": "0 9 * * *",
+      "schedule": "0 10 * * *",
       "device": "tera-male-uvb",
       "action": "on"
     },
     "tera-male-uvb-off_vecer": {
-      "schedule": "0 17 * * *",
+      "schedule": "0 15 * * *",
       "device": "tera-male-uvb",
       "action": "off"
     }
